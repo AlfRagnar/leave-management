@@ -2,7 +2,7 @@
 
 namespace leave_management.Contracts
 {
-    public interface ILeaveHistoryRepository : IRepositoryBase<LeaveRequest>
+    public interface ILeaveRequestRepository : IRepositoryBase<LeaveRequest>
     {
     }
 }
