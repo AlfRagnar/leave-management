@@ -1,6 +1,5 @@
 ﻿using leave_management.Contracts;
 using leave_management.Data;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,33 +14,33 @@ namespace leave_management.Repository
             _db = db;
         }
 
-        public bool Create(LeaveHistory entity)
+        public bool Create(LeaveRequest entity)
         {
-            _db.LeaveHistories.Add(entity);
+            _db.LeaveRequests.Add(entity);
             return Save();
         }
 
-        public bool Delete(LeaveHistory entity)
+        public bool Delete(LeaveRequest entity)
         {
-            _db.LeaveHistories.Remove(entity);
+            _db.LeaveRequests.Remove(entity);
             return Save();
         }
 
-        public ICollection<LeaveHistory> FindAll()
+        public ICollection<LeaveRequest> FindAll()
         {
-            var leaveHistories = _db.LeaveHistories.ToList();
+            var leaveHistories = _db.LeaveRequests.ToList();
             return leaveHistories;
         }
 
-        public LeaveHistory FindById(int Id)
+        public LeaveRequest FindById(int Id)
         {
-            var leaveHistory = _db.LeaveHistories.Find(Id);
+            var leaveHistory = _db.LeaveRequests.Find(Id);
             return leaveHistory;
         }
 
         public bool isExists(int Id)
         {
-            var exists = _db.LeaveHistories.Any(x => x.Id == Id);
+            var exists = _db.LeaveRequests.Any(x => x.Id == Id);
             return exists;
         }
 
@@ -51,9 +50,9 @@ namespace leave_management.Repository
             return changes > 0;
         }
 
-        public bool Update(LeaveHistory entity)
+        public bool Update(LeaveRequest entity)
         {
-            _db.LeaveHistories.Update(entity);
+            _db.LeaveRequests.Update(entity);
             return Save();
         }
     }
