@@ -22,8 +22,10 @@ namespace leave_management.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
+        public int NumberOfDays { get; set; }
 
         public LeaveTypeVM LeaveType { get; set; }
+        public int LeaveTypeId { get; set; }
 
         [Display(Name = "Date Requested")]
         public DateTime DateRequested { get; set; }
@@ -35,6 +37,7 @@ namespace leave_management.Models
         public bool? Approved { get; set; }
 
         public EmployeeVM ApprovedBy { get; set; }
+
         [Display(Name = "Approver Name")]
         public string ApprovedById { get; set; }
     }
@@ -60,11 +63,11 @@ namespace leave_management.Models
     {
         [Display(Name = "Start Date")]
         [Required]
-        public DateTime StartDate { get; set; }
+        public string StartDate { get; set; }
 
         [Display(Name = "End Date")]
         [Required]
-        public DateTime EndDate { get; set; }
+        public string EndDate { get; set; }
 
         public IEnumerable<SelectListItem> LeaveTypes { get; set; }
 
