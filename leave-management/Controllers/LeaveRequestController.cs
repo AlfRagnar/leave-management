@@ -54,6 +54,56 @@ namespace leave_management.Controllers
             return View(model);
         }
 
+        public ActionResult MyLeave()
+        {
+            var employee = _userManager.GetUserAsync(User).Result;
+            var employeeid = employee.Id;
+            var employeeAllocation = _leaveAllocRepo.GetLeaveAllocationByEmployee(employeeid);
+            var employeeRequest = _leaveRequestRepo.GetLeaveRequestByEmployee(employeeid);
+
+            var employeeAllocationsModel = _mapper.Map<List<LeaveAllocationVM>>(employeeAllocation);
+            var employeeRequestsModel = _mapper.Map<List<LeaveRequestVM>>(employeeRequest);
+
+            var model = new EmployeeLeaveRequestViewVM
+            {
+                LeaveAllocations = employeeAllocationsModel,
+                LeaveRequests = employeeRequestsModel
+            };
+
+            return View(model);
+        }
+
+        public ActionResult CancelRequest(LeaveRequestVM leaveRequestId)
+        {
+            var RequestId = _leaveRequestRepo.FindById(leaveRequestId.Id);
+            
+
+            var cancelLeaveRequest = _leaveRequestRepo.Delete(RequestId);
+            if (cancelLeaveRequest == true)
+            {
+                if (RequestId.Approved == true)
+                {
+                    var user = _userManager.GetUserAsync(User).Result;
+                    var employeeid = RequestId.RequestingEmployeeId;
+                    var leaveType = RequestId.LeaveTypeId;
+                    var allocation = _leaveAllocRepo.GetLeaveAllocationByEmployeeAndType(employeeid, leaveType);
+                    int NumberOfDays = (int)(RequestId.EndDate - RequestId.StartDate).TotalDays;
+                    allocation.NumberOfDays += NumberOfDays;
+                }
+
+                var Save = _leaveRequestRepo.Save();
+                if (!Save)
+                {
+                    ModelState.AddModelError("", "Failed to save database");
+                    return RedirectToAction(nameof(MyLeave));
+                }
+                return RedirectToAction(nameof(MyLeave));
+            }
+
+            ModelState.AddModelError("", "Failed to delete leave request with id:" + leaveRequestId);
+            return RedirectToAction(nameof(MyLeave));
+        }
+
         // GET: LeaveRequestController/Details/5
         public ActionResult Details(int id)
         {
@@ -179,7 +229,7 @@ namespace leave_management.Controllers
                     ModelState.AddModelError("", "Something went wrong with submiting your record");
                     return View(model);
                 }
-                return RedirectToAction(nameof(Index), "Home");
+                return RedirectToAction(nameof(MyLeave));
             }
             catch (Exception ex)
             {

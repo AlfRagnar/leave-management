@@ -22,6 +22,7 @@ namespace leave_management.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime EndDate { get; set; }
+
         public int NumberOfDays { get; set; }
 
         public LeaveTypeVM LeaveType { get; set; }
@@ -73,5 +74,11 @@ namespace leave_management.Models
 
         [Display(Name = "Leave Type")]
         public int LeaveTypeId { get; set; }
+    }
+
+    public class EmployeeLeaveRequestViewVM
+    {
+        public List<LeaveAllocationVM> LeaveAllocations { get; set; }
+        public List<LeaveRequestVM> LeaveRequests { get; set; }
     }
 }
