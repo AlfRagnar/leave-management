@@ -10,7 +10,7 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee.UserName)
+            User Name
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Employee.UserName)
@@ -22,46 +22,28 @@
             @Html.DisplayFor(model => model.Employee.Email)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee.PhoneNumber)
+            Phone Number
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Employee.PhoneNumber)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee.FirstName)
+            First Name
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Employee.FirstName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee.LastName)
+            Last Name
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Employee.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee.TaxId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Employee.TaxId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee.DateOfBirth)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Employee.DateOfBirth)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee.DateJoined)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Employee.DateJoined)
         </dd>
     </dl>
 </div>
 <div>
     <a asp-action="ListEmployees" class="btn btn-info">
-        <i class="fa fa-step-backward" aria-hidden="true"></i>
+        <i class="fas fa-step-backward" aria-hidden="true"></i>
         Back to List
     </a>
 </div>
