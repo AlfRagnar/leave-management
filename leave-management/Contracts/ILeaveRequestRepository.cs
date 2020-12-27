@@ -1,5 +1,4 @@
 ﻿using leave_management.Data;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

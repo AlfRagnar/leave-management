@@ -20,7 +20,7 @@ namespace leave_management
                     UserName = "admin@localhost.com",
                     Email = "admin@localhost.com"
                 };
-                    var result = userManager.CreateAsync(user, "P@ssword1").Result;
+                var result = userManager.CreateAsync(user, "P@ssword1").Result;
                 if (result.Succeeded)
                 {
                     userManager.AddToRoleAsync(user, "Administrator");

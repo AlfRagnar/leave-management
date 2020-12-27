@@ -83,7 +83,7 @@ namespace leave_management.Controllers
             {
                 if (RequestId.Approved == true)
                 {
-                    var user =await _userManager.GetUserAsync(User);
+                    var user = await _userManager.GetUserAsync(User);
                     var employeeid = RequestId.RequestingEmployeeId;
                     var leaveType = RequestId.LeaveTypeId;
                     var allocation = await _leaveAllocRepo.GetLeaveAllocationByEmployeeAndType(employeeid, leaveType);

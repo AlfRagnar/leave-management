@@ -72,8 +72,8 @@ namespace leave_management.Repository
 
         public async Task<bool> IsExists(int Id)
         {
-            var exists =await _db.LeaveAllocations.AnyAsync(x => x.Id == Id);
-            return  exists;
+            var exists = await _db.LeaveAllocations.AnyAsync(x => x.Id == Id);
+            return exists;
         }
 
         public async Task<bool> Save()
