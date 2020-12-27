@@ -1,20 +1,22 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace leave_management.Contracts
 {
     public interface IRepositoryBase<T> where T : class
     {
-        ICollection<T> FindAll();
+        Task<ICollection<T>> FindAll();
 
-        T FindById(int Id);
-        bool isExists(int Id);
+        Task<T> FindById(int Id);
 
-        bool Create(T entity);
+        Task<bool> IsExists(int Id);
 
-        bool Update(T entity);
+        Task<bool> Create(T entity);
 
-        bool Delete(T entity);
+        Task<bool> Update(T entity);
 
-        bool Save();
+        Task<bool> Delete(T entity);
+
+        Task<bool> Save();
     }
 }
